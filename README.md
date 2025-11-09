@@ -1,11 +1,21 @@
-📅 Build and Deploy a Calendly Clone
+# 📅 Calendly Clone
 
-Just finished a full-stack Calendly-style scheduling app using Next.js 15, Clerk, Tailwind CSS, and server actions.
+A minimal, full-stack **Calendly-style scheduling app** built with **Next.js 15**, **Clerk**, and **Tailwind CSS**.
+Create event types, set availability, and share links for people to book meetings with you.
 
-What I built:
-• Create & manage event types
-• User availability + scheduling
-• Authentication with Clerk
-• Full-stack logic with Server Actions
-• Clean UI with Tailwind + ShadCN
-• Deployed on Vercel
+
+## ✅ Features
+
+* User Auth (Clerk)
+* Create & edit event types
+* Set availability
+* Booking flow & scheduling
+* Modern UI with Tailwind + ShadCN
+* Fully deployed on Vercel
+
+
+## 🌐 Deploy
+
+Deploy with one click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
