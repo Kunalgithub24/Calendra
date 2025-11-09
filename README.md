@@ -13,3 +13,5 @@ Create event types, set availability, and share links for people to book meeting
 * Modern UI with Tailwind + ShadCN
 * Fully deployed on Vercel
 
+
+Link in the abouts ✓
