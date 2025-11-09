@@ -41,9 +41,10 @@ export default function EventForm({
     const router = useRouter()
 
 
-    type EventFormData = z.output<typeof eventFormSchema>
+    type EventFormInput = z.input<typeof eventFormSchema>
+    type EventFormOutput = z.output<typeof eventFormSchema>
 
-    const form = useForm<EventFormData>({
+    const form = useForm<EventFormInput>({
         resolver: zodResolver(eventFormSchema), // Validate with Zod schema
         defaultValues: event
         ? {
@@ -61,10 +62,12 @@ export default function EventForm({
     })
 
     // Handle form submission
-    async function onSubmit(values: EventFormData) {
-        const action =  event == null ? createEvent : updateEvent.bind(null, event.id)
+    async function onSubmit(values: EventFormInput) {
+        // The schema will transform string | number to number during validation
+        const validatedData = eventFormSchema.parse(values) as EventFormOutput
+        const action = event == null ? createEvent : updateEvent.bind(null, event.id)
         try {
-            await action(values)
+            await action(validatedData)
             router.push('/events')
 
         } catch (error: any) {
@@ -117,9 +120,12 @@ export default function EventForm({
                     <FormControl>
                         <Input 
                             type="number" 
-                            {...field}
-                            value={field.value ?? ''}
-                            onChange={(e) => field.onChange(e.target.value)}
+                            value={typeof field.value === 'number' ? field.value.toString() : (field.value ?? '')}
+                            onChange={(e) => {
+                                const val = e.target.value
+                                // Keep as string (schema will handle conversion to number)
+                                field.onChange(val === '' ? '' : val)
+                            }}
                         />
                     </FormControl>
                     <FormDescription>In minutes</FormDescription>
