@@ -13,9 +13,3 @@ Create event types, set availability, and share links for people to book meeting
 * Modern UI with Tailwind + ShadCN
 * Fully deployed on Vercel
 
-
-## 🌐 Deploy
-
-Deploy with one click:
-
-Check Here https://calendra-two.vercel.app
