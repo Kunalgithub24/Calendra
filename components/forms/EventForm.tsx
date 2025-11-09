@@ -41,7 +41,9 @@ export default function EventForm({
     const router = useRouter()
 
 
-    const form = useForm<z.infer<typeof eventFormSchema>>({
+    type EventFormData = z.output<typeof eventFormSchema>
+
+    const form = useForm<EventFormData>({
         resolver: zodResolver(eventFormSchema), // Validate with Zod schema
         defaultValues: event
         ? {
@@ -59,7 +61,7 @@ export default function EventForm({
     })
 
     // Handle form submission
-    async function onSubmit(values: z.infer<typeof eventFormSchema>) {
+    async function onSubmit(values: EventFormData) {
         const action =  event == null ? createEvent : updateEvent.bind(null, event.id)
         try {
             await action(values)
@@ -113,7 +115,12 @@ export default function EventForm({
                     <FormItem>
                     <FormLabel>Duration</FormLabel>
                     <FormControl>
-                        <Input type="number" {...field} />
+                        <Input 
+                            type="number" 
+                            {...field}
+                            value={field.value ?? ''}
+                            onChange={(e) => field.onChange(e.target.value)}
+                        />
                     </FormControl>
                     <FormDescription>In minutes</FormDescription>
                     <FormMessage />

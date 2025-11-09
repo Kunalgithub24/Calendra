@@ -13,9 +13,9 @@ export const eventFormSchema = z.object({
   
     // 'durationInMinutes' will be coerced (converted) to a number
     // It must be an integer, greater than 0, and less than or equal to 720 (12 hours)
-    durationInMinutes: z.coerce
-      .number()
+    durationInMinutes: z.union([z.string(), z.number()])
+      .pipe(z.coerce.number()
       .int()
       .positive("Duration must be greater than 0")
-      .max(60 * 12, `Duration must be less than 12 hours (${60 * 12} minutes)`),
+      .max(60 * 12, `Duration must be less than 12 hours (${60 * 12} minutes)`)),
 })
