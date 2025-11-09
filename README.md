@@ -18,4 +18,4 @@ Create event types, set availability, and share links for people to book meeting
 
 Deploy with one click:
 
-Check Here (https://calendra-two.vercel.app/)
+Check Here https://calendra-two.vercel.app
